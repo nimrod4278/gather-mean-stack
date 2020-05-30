@@ -1,0 +1,10 @@
+<mat-toolbar class="toolbar" color="primary">
+    <button mat-button routerLink="/" class="login-btn">Gather</button>
+    <div *ngIf="userIsAuthenticated">
+        <button mat-button class="login-btn" (click)="onLogOut()">logout</button>
+    </div>
+    <div *ngIf="!userIsAuthenticated">
+        <button mat-button routerLink="/login" class="login-btn">login</button>
+        <button mat-button routerLink="/signup" class="login-btn">signup</button>
+    </div>
+</mat-toolbar>

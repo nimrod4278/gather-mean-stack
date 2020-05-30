@@ -1,0 +1,19 @@
+.app-root{
+    height: 100vh;
+}
+
+app-header {
+    height: 10vh;
+}
+
+app-footer {
+    height: 10vh;
+}
+
+main{
+    height: 100%;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    text-align: center;
+}

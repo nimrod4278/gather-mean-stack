@@ -1,0 +1,13 @@
+button {
+    margin-right: 1rem;
+}
+
+.example-full-width-last{
+    margin-bottom: 1rem;
+}
+
+.login-card {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
