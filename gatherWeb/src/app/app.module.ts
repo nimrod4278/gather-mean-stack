@@ -1,10 +1,10 @@
-// Module Imports 
+// Module Imports
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { 
+import {
   MatToolbarModule,
   MatCardModule,
   MatButtonModule,
@@ -13,6 +13,7 @@ import {
   MatProgressSpinnerModule,
   MatSelectModule
  } from '@angular/material';
+import { ChartsModule } from 'ng2-charts';
 
 // Components Import
 import { AppComponent } from './app.component';
@@ -26,6 +27,8 @@ import { SignupComponent } from './components/auth/signup/signup.component';
 import { from } from 'rxjs';
 import { AuthInterceptor } from './components/auth/auth-interceptor';
 import { GameComponent } from './components/game/game.component';
+import {PercCircleComponent} from "./components/perc-circle/perc-circle.component";
+import {StatisticsComponent} from "./components/statistics/statistics.component";
 
 @NgModule({
   declarations: [
@@ -37,7 +40,9 @@ import { GameComponent } from './components/game/game.component';
     FooterComponent,
     SignupComponent,
     GameComponent,
-    
+    PercCircleComponent,
+    StatisticsComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -52,6 +57,7 @@ import { GameComponent } from './components/game/game.component';
     HttpClientModule,
     MatProgressSpinnerModule,
     MatSelectModule,
+
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]

@@ -5,6 +5,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { GameComponent } from './components/game/game.component';
 import { AuthGuard } from './components/auth/auth.guard';
+import {StatisticsComponent} from "./components/statistics/statistics.component";
 
 const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -12,6 +13,7 @@ const routes: Routes = [
     {path: 'signup', component: SignupComponent},
     {path: 'testguard', component: HomeComponent, canActivate: [AuthGuard]},
     {path: 'testgame', component: GameComponent},
+    {path: 'statistics', component: StatisticsComponent},
 ]
 
 @NgModule({
