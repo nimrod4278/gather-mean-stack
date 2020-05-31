@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 
 const gamesRoutes = require('./routes/games');
 const userRoutes = require('./routes/user');
+const statRoutes = require('./routes/statistics');
 
 // init express app
 const app = express();
@@ -44,6 +45,7 @@ app.use(cors());
 // use gamesRouter for all path start with api/games
 app.use('/api/games', gamesRoutes);
 app.use('/api/user', userRoutes);
+app.use('/api/statistics', statRoutes);
 
 // app.use('/api/games', (req ,res, next) => {
 //     request.get("http://192.168.1.172", res, (err, res,body) => {
