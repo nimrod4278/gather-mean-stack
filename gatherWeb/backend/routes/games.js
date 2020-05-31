@@ -10,7 +10,7 @@ const Team = require('../models/team');
 const router = express.Router();
 
 // GLOBAL VARS
-const ESP8266_URL = "http://192.168.1.172";
+const ESP8266_URL = "http://192.168.43.20/"; //"http://192.168.1.172";
 const HOMEPAGE = "http://localhost:4200/";
 
 router.get('/', checkAuth, async (req ,res, next) => {
@@ -21,10 +21,12 @@ router.get('/', checkAuth, async (req ,res, next) => {
     try{
         // TODO: Seprate the axios.get to a seprate async function.
         // Return here response that game started
-        const countOfButtonPress = 2;//await axios.get(ESP8266_URL);
-        const newTeamPoints = userTeam.points + countOfButtonPress;
+        const countOfButtonPress = await axios.get(ESP8266_URL);
+        // countOfButtonPress = countOfButtonPressdata;
+        console.log(countOfButtonPress.data);
+        const newTeamPoints = userTeam.points + countOfButtonPress.data;
         await userTeam.update({points: newTeamPoints});
-        res.json({
+        res.status(200).json({
             teamId: userTeam.id,
             points: newTeamPoints
         })
@@ -49,5 +51,10 @@ router.post('/', (req ,res, next) => {
     });
     // no next because we send a response 
 });
+
+
+async function startGame(url){
+    return;
+}
 
 module.exports = router;
