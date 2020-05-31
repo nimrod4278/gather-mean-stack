@@ -15,7 +15,6 @@ export class AuthService {
     constructor(private http: HttpClient, private router: Router){}
 
     getToken() {
-        console.log(this.token);
         return this.token;
     }
 

@@ -12,8 +12,8 @@ const routes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'signup', component: SignupComponent},
     {path: 'testguard', component: HomeComponent, canActivate: [AuthGuard]},
-    {path: 'testgame', component: GameComponent},
-    {path: 'statistics', component: StatisticsComponent},
+    {path: 'testgame', component: GameComponent, canActivate: [AuthGuard]},
+    {path: 'statistics', component: StatisticsComponent, canActivate: [AuthGuard]},
 ]
 
 @NgModule({
