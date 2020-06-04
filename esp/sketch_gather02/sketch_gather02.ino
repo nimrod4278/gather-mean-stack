@@ -1,3 +1,4 @@
+
 /*
     This sketch demonstrates how to scan WiFi networks.
     The API is almost the same as with the WiFi Shield library,
@@ -10,10 +11,13 @@
 
 #define buttonPin D1
 
-const char* ssid     = "***";
-const char* password = "***";
+const char* ssid     = "Ginsberg2.4";
+const char* password = "ginsbergza";
 
-const char* serverURL = "localhost:3000/api/games/";
+const char* host = "https://gather-node.herokuapp.com/api/user/init";
+const uint16_t port = 443;
+
+//const char* serverURL = "localhost:3000/api/games/";
 
 HTTPMethod post = HTTP_POST;
 
@@ -27,6 +31,7 @@ void setup() {
   pinMode(buttonPin, INPUT_PULLUP);
 //  Serial.println(digitalRead(buttonPin));
 
+  WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {   //Wait for connection
      delay(500);
@@ -35,7 +40,9 @@ void setup() {
   }
   Serial.print("IP address: ");
   Serial.println(WiFi.localIP());
-  Serial.println(WiFi.macAddress());
+  Serial.println(WiFi.softAPIP());
+  Serial.println(WiFi.gatewayIP());
+  
 
   server.on("/", handleRootPath);
 
@@ -43,12 +50,31 @@ void setup() {
   server.begin();                    //Start the server
   Serial.println("Server listening");
 //  initHTTPReq();
+
+  configConnection();
 }
 
 void loop() {
    server.handleClient();
 //  Portal.handleClient();
 }
+
+
+void configConnection(){
+  WiFiClient client;
+  if (!client.connect(host, port)) {
+    Serial.println("connection failed");
+    delay(5000);
+    return;
+  }
+
+  // This will send a string to the server
+  Serial.println("sending data to server");
+  if (client.connected()) {
+    client.println("hello from esp");
+  }
+}
+
 
 //void initHTTPReq(){
 //   if(WiFi.status()== WL_CONNECTED){   //Check WiFi connection status
