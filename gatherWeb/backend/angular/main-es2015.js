@@ -982,6 +982,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
 /* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../auth/auth.service */ "./src/app/components/auth/auth.service.ts");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../environments/environment */ "./src/environments/environment.ts");
+
 
 
 
@@ -992,11 +994,12 @@ let GameComponent = class GameComponent {
         this.authService = authService;
     }
     ngOnInit() {
+        console.log(_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl);
     }
     onStartGame() {
         console.log('starting game');
         const { token } = this.authService.getAuthData();
-        const res = this.http.get('http://localhost:3000/api/games', { headers: {
+        const res = this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl}api/games`, { headers: {
                 Authorization: `Bearer ${token}`
             } }).toPromise().then(res => {
             console.log(res);

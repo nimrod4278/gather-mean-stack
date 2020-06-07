@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-game',
@@ -13,12 +14,13 @@ export class GameComponent implements OnInit {
   
 
   ngOnInit() {
+    console.log(environment.apiUrl);
   }
 
   onStartGame(){
     console.log('starting game');
     const {token} = this.authService.getAuthData();
-    const res = this.http.get('http://localhost:3000/api/games', { headers: {
+    const res = this.http.get(`${environment.apiUrl}api/mqtt`, { headers: {
       Authorization: `Bearer ${token}`
     }}).toPromise().then(res => {
       console.log(res);

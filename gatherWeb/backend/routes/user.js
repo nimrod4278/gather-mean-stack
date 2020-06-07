@@ -54,7 +54,7 @@ router.post("/login", (req,res,next) => {
         // password match
         const token = jwt.sign(
             {email: fetcheduser.email, userId: fetcheduser._id},
-            process.env.JWT_KEY,
+            "secret_this_should_be_longer",
             {expiresIn: '1h'}
         );
         res.status(200).json({

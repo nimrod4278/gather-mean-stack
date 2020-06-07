@@ -1866,6 +1866,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _auth_auth_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! ../auth/auth.service */
     "./src/app/components/auth/auth.service.ts");
+    /* harmony import */
+
+
+    var _environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! ../../../environments/environment */
+    "./src/environments/environment.ts");
 
     var GameComponent = /*#__PURE__*/function () {
       function GameComponent(http, authService) {
@@ -1877,7 +1883,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
       _createClass(GameComponent, [{
         key: "ngOnInit",
-        value: function ngOnInit() {}
+        value: function ngOnInit() {
+          console.log(_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl);
+        }
       }, {
         key: "onStartGame",
         value: function onStartGame() {
@@ -1886,7 +1894,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var _this$authService$get = this.authService.getAuthData(),
               token = _this$authService$get.token;
 
-          var res = this.http.get('http://localhost:3000/api/games', {
+          var res = this.http.get("".concat(_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl, "api/games"), {
             headers: {
               Authorization: "Bearer ".concat(token)
             }
