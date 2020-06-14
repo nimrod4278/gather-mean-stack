@@ -7,7 +7,7 @@ class MqttHandler {
   constructor() {
     this.host = 'https://io.adafruit.com/';
     this.username = "gather1122"; //process.env.ADAFRUIT_USER; // mqtt credentials if these are needed to connect
-    this.password = "****"; //process.env.ADAFRUIT_PASS;
+    this.password = "aio_PGtP19gIkooEhB57QPMz1dUdxRHe"; //process.env.ADAFRUIT_PASS;
     this.subscriptionTopic = `${this.username}/feeds/finish`;
     this.mqttClient = mqtt.connect(this.host, { port:1883, username: this.username, password: this.password });
     this.team = null;

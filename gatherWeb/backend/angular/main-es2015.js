@@ -32,7 +32,7 @@ webpackEmptyAsyncContext.id = "./$$_lazy_route_resource lazy recursive";
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"app-root\">\r\n  <app-header></app-header>\r\n  <main>\r\n    <router-outlet></router-outlet>\r\n  </main>\r\n  <app-footer></app-footer>\r\n</div>\r\n\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"app-root\">\n  <app-header></app-header>\n  <main>\n    <router-outlet></router-outlet>\n  </main>\n  <app-footer></app-footer>\n</div>\n\n");
 
 /***/ }),
 
@@ -45,7 +45,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<!-- <mat-card class=\"login-card\"> -->\r\n<div>\r\n    <mat-spinner *ngIf=\"isLoading\" style=\"margin: auto;\"></mat-spinner>\r\n    <form class=\"login-form\" (submit)=\"onLogIn(logInForm)\" #logInForm=\"ngForm\" *ngIf=\"!isLoading\">\r\n        <div class=\"login-div\">\r\n            \r\n            <mat-form-field class=\"example-full-width\">\r\n                <mat-label>Email</mat-label>\r\n                <input matInput name=\"email\" ngModel placeholder=\"example@exp.com\" value=\"\" required #email=\"ngModel\" required email>\r\n                <mat-error *ngIf=\"email.invalid\">Please Enter a valid email</mat-error>\r\n            </mat-form-field>\r\n            <br>\r\n            <mat-form-field class=\"example-full-width-last\">\r\n                <mat-label>Password</mat-label>\r\n                <input matInput name=\"password\" ngModel placeholder=\"example1234\" value=\"\" required #password=\"ngModel\">\r\n                <mat-error *ngIf=\"password.invalid\">Please Enter a valid password</mat-error>\r\n            </mat-form-field>\r\n            <br>\r\n            <button mat-raised-button color=\"basic\">Sign-up</button>\r\n            <button type=\"submit\" mat-raised-button color=\"primary\">Log-in</button>\r\n        </div>\r\n    </form>\r\n</div>\r\n    \r\n<!-- </mat-card> -->\r\n\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<!-- <mat-card class=\"login-card\"> -->\n<div>\n    <mat-spinner *ngIf=\"isLoading\" style=\"margin: auto;\"></mat-spinner>\n    <form class=\"login-form\" (submit)=\"onLogIn(logInForm)\" #logInForm=\"ngForm\" *ngIf=\"!isLoading\">\n        <div class=\"login-div\">\n            \n            <mat-form-field class=\"example-full-width\">\n                <mat-label>Email</mat-label>\n                <input matInput name=\"email\" ngModel placeholder=\"example@exp.com\" value=\"\" required #email=\"ngModel\" required email>\n                <mat-error *ngIf=\"email.invalid\">Please Enter a valid email</mat-error>\n            </mat-form-field>\n            <br>\n            <mat-form-field class=\"example-full-width-last\">\n                <mat-label>Password</mat-label>\n                <input matInput name=\"password\" ngModel placeholder=\"example1234\" value=\"\" required #password=\"ngModel\">\n                <mat-error *ngIf=\"password.invalid\">Please Enter a valid password</mat-error>\n            </mat-form-field>\n            <br>\n            <button mat-raised-button color=\"basic\">Sign-up</button>\n            <button type=\"submit\" mat-raised-button color=\"primary\">Log-in</button>\n        </div>\n    </form>\n</div>\n    \n<!-- </mat-card> -->\n\n");
 
 /***/ }),
 
@@ -58,7 +58,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div>\r\n    <mat-spinner *ngIf=\"isLoading\" style=\"margin: auto\"></mat-spinner>\r\n    <form class=\"login-form\" (submit)=\"onSignUp(logInForm)\" #logInForm=\"ngForm\"  *ngIf=\"!isLoading\">\r\n        <div class=\"login-div\">\r\n            <mat-form-field class=\"example-full-width\">\r\n                <mat-label>Email</mat-label>\r\n                <input matInput name=\"email\" ngModel placeholder=\"example@exp.com\" value=\"\"  #email=\"ngModel\" required email>\r\n                <mat-error *ngIf=\"email.invalid\">Please Enter a valid email</mat-error>\r\n            </mat-form-field>\r\n            <br>\r\n            <mat-form-field class=\"example-full-width-last\">\r\n                <mat-label>Password</mat-label>\r\n                <input matInput name=\"password\" ngModel placeholder=\"example1234\" value=\"\"  #password=\"ngModel\" required password>\r\n                <mat-error *ngIf=\"password.invalid\">Please Enter a valid password</mat-error>\r\n            </mat-form-field>\r\n            <br>\r\n            <mat-form-field>\r\n                <mat-label>Team</mat-label>\r\n                <mat-select name=\"team\" ngModel #team='ngModel' #team='ngModel' required>\r\n                  <mat-option *ngFor=\"let team of Teams\" [value]=\"team\">\r\n                    {{team}}\r\n                  </mat-option>\r\n                </mat-select>\r\n                <mat-error *ngIf=\"team.invalid\">Please Enter a valid team</mat-error>\r\n            </mat-form-field>\r\n            <br>\r\n            <button type=\"submit\" mat-raised-button color=\"basic\">Sign-up</button>\r\n        </div>\r\n    </form>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div>\n    <mat-spinner *ngIf=\"isLoading\" style=\"margin: auto\"></mat-spinner>\n    <form class=\"login-form\" (submit)=\"onSignUp(logInForm)\" #logInForm=\"ngForm\"  *ngIf=\"!isLoading\">\n        <div class=\"login-div\">\n            <mat-form-field class=\"example-full-width\">\n                <mat-label>Email</mat-label>\n                <input matInput name=\"email\" ngModel placeholder=\"example@exp.com\" value=\"\"  #email=\"ngModel\" required email>\n                <mat-error *ngIf=\"email.invalid\">Please Enter a valid email</mat-error>\n            </mat-form-field>\n            <br>\n            <mat-form-field class=\"example-full-width-last\">\n                <mat-label>Password</mat-label>\n                <input matInput name=\"password\" ngModel placeholder=\"example1234\" value=\"\"  #password=\"ngModel\" required password>\n                <mat-error *ngIf=\"password.invalid\">Please Enter a valid password</mat-error>\n            </mat-form-field>\n            <br>\n            <mat-form-field>\n                <mat-label>Team</mat-label>\n                <mat-select name=\"team\" ngModel #team='ngModel' #team='ngModel' required>\n                  <mat-option *ngFor=\"let team of Teams\" [value]=\"team\">\n                    {{team}}\n                  </mat-option>\n                </mat-select>\n                <mat-error *ngIf=\"team.invalid\">Please Enter a valid team</mat-error>\n            </mat-form-field>\n            <br>\n            <button type=\"submit\" mat-raised-button color=\"basic\">Sign-up</button>\n        </div>\n    </form>\n</div>\n");
 
 /***/ }),
 
@@ -97,7 +97,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<p>games works!</p>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<p>games works!</p>\n");
 
 /***/ }),
 
@@ -123,7 +123,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<mat-card class=\"logo-card\">Logo and chatch phrasre</mat-card>\r\n<hr>\r\n<mat-card class=\"body-card\">Body</mat-card>");
+/* harmony default export */ __webpack_exports__["default"] = ("<mat-card class=\"logo-card\">Logo and chatch phrasre</mat-card>\n<hr>\n<mat-card class=\"body-card\">Body</mat-card>");
 
 /***/ }),
 
@@ -999,7 +999,7 @@ let GameComponent = class GameComponent {
     onStartGame() {
         console.log('starting game');
         const { token } = this.authService.getAuthData();
-        const res = this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl}api/games`, { headers: {
+        const res = this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].apiUrl}api/mqtt`, { headers: {
                 Authorization: `Bearer ${token}`
             } }).toPromise().then(res => {
             console.log(res);
@@ -1359,7 +1359,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_3__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\nimfel01\OneDrive - ARM\Desktop\milab-finalproj\gather-mean-stack\gatherWeb\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\nimro\Desktop\study\year 3\semester_b\milab\mean-stack-esp\gatherWeb\src\main.ts */"./src/main.ts");
 
 
 /***/ })
