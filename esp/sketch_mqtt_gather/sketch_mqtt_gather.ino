@@ -15,21 +15,25 @@
   Written by Tony DiCola for Adafruit Industries.
   MIT license, all text above must be included in any redistribution
  ****************************************************/
-#include <ESP8266WiFi.h>
+#include "ESP8266WiFi.h"
 #include "Adafruit_MQTT.h"
 #include "Adafruit_MQTT_Client.h"
+#include <Adafruit_NeoPixel.h>
+#ifdef __AVR__
+  #include <avr/power.h>
+#endif
 
 /************************* WiFi Access Point *********************************/
 
-#define WLAN_SSID       "********"
-#define WLAN_PASS       "********"
+#define WLAN_SSID       "OMRINIMRID"
+#define WLAN_PASS       "0545421942"
 
 /************************* Adafruit.io Setup *********************************/
 
 #define AIO_SERVER      "io.adafruit.com"
 #define AIO_SERVERPORT  1883                   // use 8883 for SSL
 #define AIO_USERNAME    "gather1122"
-#define AIO_KEY         "*********"
+#define AIO_KEY         "aio_HjFh48qbmclsyqjCi0hMaYeo5EBf"
 
 /************ Global State (you don't need to change this!) ******************/
 
@@ -51,6 +55,16 @@ Adafruit_MQTT_Publish finishFeed = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/f
 Adafruit_MQTT_Subscribe startFeed = Adafruit_MQTT_Subscribe(&mqtt, AIO_USERNAME "/feeds/start");
 
 
+/*************************** NeoPixel PARTS **********************************/
+
+#define PIN D6
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(30, PIN, NEO_GRB + NEO_KHZ800);
+int currentPixel = 0;
+long lastPlayed = millis();
+uint32_t white = strip.Color(255, 255, 255);
+uint32_t red = strip.Color(255, 0, 0);
+uint32_t green = strip.Color(0, 255, 0);
+uint32_t blue = strip.Color(0, 0, 255);
 /*************************** ARDUINO PARTS **********************************/
 
 #define TIME_OF_GAME 3000
@@ -66,10 +80,17 @@ int gameScore = 0;
 void MQTT_connect();
 
 void setup() {
+  // This is for Trinket 5V 16MHz, you can remove these three lines if you are not using a Trinket
+  #if defined (__AVR_ATtiny85__)
+    if (F_CPU == 16000000) clock_prescale_set(clock_div_1);
+  #endif
+  // End of trinket special code
   Serial.begin(115200);
   delay(10);
 
   pinMode(buttonPin, INPUT_PULLUP);
+  strip.begin();
+  strip.show(); // Initialize all pixels to 'off'
   
   Serial.println(F("Adafruit MQTT demo"));
 
@@ -82,6 +103,7 @@ void setup() {
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
+    pixelOn(white);
   }
   Serial.println();
 
@@ -99,6 +121,7 @@ void loop() {
   // connection and automatically reconnect when disconnected).  See the MQTT_connect
   // function definition further below.
   MQTT_connect();
+  currentPixel = 0;
 
   // this is our 'wait for incoming subscription packets' busy subloop
   // try to spend your time here
@@ -120,21 +143,7 @@ void loop() {
     }
   }
 
-  // Now we can publish stuff!
-//  Serial.print(F("\nSending photocell val "));
-//  if (! photocell.publish(5)) {
-//    Serial.println(F("Failed"));
-//  } else {
-//    Serial.println(F("OK!"));
-//  }
-
-  // ping the server to keep the mqtt connection alive
-  // NOT required if you are publishing once every KEEPALIVE seconds
-  /*
-  if(! mqtt.ping()) {
-    mqtt.disconnect();
-  }
-  */
+  showLastPlayed(millis() - lastPlayed);
 }
 
 // Function to connect and reconnect as necessary to the MQTT server.
@@ -151,6 +160,7 @@ void MQTT_connect() {
 
   uint8_t retries = 3;
   while ((ret = mqtt.connect()) != 0) { // connect will return 0 for connected
+       pixelOn(white);
        Serial.println(mqtt.connectErrorString(ret));
        Serial.println("Retrying MQTT connection in 5 seconds...");
        mqtt.disconnect();
@@ -162,6 +172,7 @@ void MQTT_connect() {
        }
   }
   Serial.println("MQTT Connected!");
+  showConnected();
 }
 
 int startPlaying(){
@@ -175,13 +186,79 @@ int startPlaying(){
     if(buttonVal == LOW){
       Serial.println("BUTTON PRESSED");
       count++;
+      if(count % 5 == 0){
+        showTen(strip.Color(0, 255, 0), 10);
+      }
       delay(100);
     }
     delay(100);
     endTime = millis();
   //    yield();
    }
-
+   lastPlayed = millis();
    return count;
 }
 
+void pixelOn(uint32_t c) {
+  strip.setPixelColor(currentPixel, c);
+  strip.show();
+  currentPixel++;
+}
+
+void showConnected() {
+  rowOnRowOff(blue);
+}
+
+void resetStrip() {
+  
+}
+
+void rowOnRowOff(uint32_t c) {
+  colorWipe(strip.Color(0, 0, 255), 10);
+  colorWipe(0, 10);
+  colorWipe(strip.Color(0, 0, 255), 10);
+  colorWipe(0, 10);
+}
+
+void showTen(uint32_t c, uint8_t wait){
+    for (int j=0; j<10; j++) {  //do 10 cycles of chasing
+    for (int q=0; q < 3; q++) {
+      for (uint16_t i=0; i < strip.numPixels(); i=i+3) {
+        strip.setPixelColor(i+q, c);    //turn every third pixel on
+      }
+      strip.show();
+
+      delay(wait);
+
+      for (uint16_t i=0; i < strip.numPixels(); i=i+3) {
+        strip.setPixelColor(i+q, 0);        //turn every third pixel off
+      }
+    }
+  }
+  strip.show();
+}
+
+void colorWipe(uint32_t c, uint8_t wait) {
+  for(uint16_t i=0; i<strip.numPixels(); i++) {
+    strip.setPixelColor(i, c);
+    strip.show();
+    delay(wait);
+  }
+}
+
+void showLastPlayed(long duration){
+  if(duration > 765000) {
+    duration = 765000;
+  }
+
+  duration = duration / 3000;
+
+  Serial.print("Duration is:  ");
+  Serial.println(duration);
+
+  uint32_t c = strip.Color(duration * 2, 0, (255 - duration) / 2);
+  for (uint16_t i=0; i < strip.numPixels(); i++){
+    strip.setPixelColor(i, c);
+  }
+  strip.show();
+}
