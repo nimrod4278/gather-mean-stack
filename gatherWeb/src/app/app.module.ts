@@ -29,6 +29,7 @@ import { AuthInterceptor } from './components/auth/auth-interceptor';
 import { GameComponent } from './components/game/game.component';
 import {PercCircleComponent} from "./components/perc-circle/perc-circle.component";
 import {StatisticsComponent} from "./components/statistics/statistics.component";
+import { DChartComponent } from './components/d-chart/d-chart.component';
 
 @NgModule({
   declarations: [
@@ -42,23 +43,25 @@ import {StatisticsComponent} from "./components/statistics/statistics.component"
     GameComponent,
     PercCircleComponent,
     StatisticsComponent,
+    DChartComponent,
 
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatCardModule,
-    MatButtonModule,
-    MatInputModule,
-    FormsModule,
-    MatFormFieldModule,
-    HttpClientModule,
-    MatProgressSpinnerModule,
-    MatSelectModule,
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatCardModule,
+        MatButtonModule,
+        MatInputModule,
+        FormsModule,
+        MatFormFieldModule,
+        HttpClientModule,
+        MatProgressSpinnerModule,
+        MatSelectModule,
+        ChartsModule,
 
-  ],
+    ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,9 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+.circle{
+  flex-flow: row nowrap;
+  justify-content: center;
+  margin-top: 50px;
+  display: inline-flex;
+
+}
